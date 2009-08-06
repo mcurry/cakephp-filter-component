@@ -47,7 +47,7 @@ class FilterComponent extends Object {
 	function initialize(&$controller, $settings = array()) {
 		// for index actions
 		if (!isset($settings['actions']) || empty($settings['actions'])) {
-			$actions = array('index');
+			$actions = array('index', 'admin_index');
 		} else {
 			$actions = $settings['actions'];
 		}
