@@ -22,31 +22,40 @@ Filters hasOne and belongsTo relationships (I prefer selects from dropdowns, but
 		$this->set(compact('filterOptions', 'posts'));
 	}
 3. Setup your view correctly:
-	<?php echo $form->create('Post', array('action' => 'index', 'id' => 'filters')); ?>
-	<table cellpadding="0" cellspacing="0">
-		<thead>
-			<tr>
-				<th><?php echo $paginator->sort('Name', 'name', $filter_options);?></th>
-				<th class="actions">Actions</th>
-			</tr>
-			<tr>
-				<th><?php echo $form->input('name'); ?></th>
-				<th>
-					<button type="submit" name="data[filter]" value="filter">Filter</button>
-					<button type="submit" name="data[reset]" value="reset">Reset</button>
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-			// loop through and display your data
-		</tbody>
-	</table>
-	<?php echo $form->end(); ?>
-	<div class="paging">
-		<?php echo $paginator->prev('<< '.__('previous', true), $filter_options, null, array('class' => 'disabled'));?>
-	 | 	<?php echo $paginator->numbers($filter_options);?>
-		<?php echo $paginator->next(__('next', true).' >>', $filter_options, null, array('class' =>' disabled'));?>
-	</div>
+  Option 1: Use the helper
+    In between the row with all the column headers and the first row of data add:
+    <?php echo $filter->form('Post', array('name')) ?>
+    The first parameter is the model name.
+    The second parameter is an array of fields.  If you don't want to filter a particular field pass null in that spot.
+    
+  Option 2: Manually
+  	<?php echo $form->create('Post', array('action' => 'index', 'id' => 'filters')); ?>
+  	<table cellpadding="0" cellspacing="0">
+  		<thead>
+  			<tr>
+  				<th><?php echo $paginator->sort('Name', 'name', $filterOptions);?></th>
+  				<th class="actions">Actions</th>
+  			</tr>
+  			<tr>
+  				<th><?php echo $form->input('name'); ?></th>
+  				<th>
+  					<button type="submit" name="data[filter]" value="filter">Filter</button>
+  					<button type="submit" name="data[reset]" value="reset">Reset</button>
+  				</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+  			// loop through and display your data
+  		</tbody>
+  	</table>
+  	<?php echo $form->end(); ?>
+  	
+  Page Links
+  	<div class="paging">
+  		<?php echo $paginator->prev('<< '.__('previous', true), $filterOptions, null, array('class' => 'disabled'));?>
+  	 | 	<?php echo $paginator->numbers($filterOptions);?>
+  		<?php echo $paginator->next(__('next', true).' >>', $filterOptions, null, array('class' =>' disabled'));?>
+  	</div>
 
 At this point, everything should theoretically work.
 
