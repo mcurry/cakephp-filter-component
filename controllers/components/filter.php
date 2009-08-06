@@ -39,7 +39,7 @@ class FilterComponent extends Object {
 	// class variables
 	var $filter = array();
 	var $formOptionsDatetime = array();
-	var $filterOptions = NULL;
+	var $filterOptions = array();
 
 	/**
 	 * Before any Controller action
